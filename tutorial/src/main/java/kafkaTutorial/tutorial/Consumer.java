@@ -11,7 +11,7 @@ public class Consumer {
     public static void main(String[] args) {
         Properties configs = new Properties();
         // 환경 변수 설정
-        configs.put("bootstrap.servers", "192.168.108.130:9092");     // kafka server host 및 port
+        configs.put("bootstrap.servers", "localhost:9092");     // kafka server host 및 port
         configs.put("session.timeout.ms", "10000");             // session 설정
         configs.put("group.id", "test20210310");                // topic 설정
         configs.put("key.deserializer", "org.apache.kafka.common.serialization.StringDeserializer");    // key deserializer
@@ -24,12 +24,12 @@ public class Consumer {
             for (ConsumerRecord<String, String> record : records) {
                 String s = record.topic();
                 if ("test20210310".equals(s)) {
-                    System.out.println(record.value());
+                    System.out.println("rec.val : "+record.value());
                 } else {
                     throw new IllegalStateException("get message on topic " + record.topic());
                 }
             }
-        }   
+        }    
     }
     
 }
